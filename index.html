@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>basic web calculator</title>
+    <style>
+        * {
+            margin: 0;
+        }
+        body {
+            margin: none;
+            overflow: hidden;
+        }
+        input {
+            text-align: right;
+            background: transparent;
+            border: none;
+            width: 400px;
+            height: 100px;
+            font-size: 76px;
+            color: #F5F5F5;
+        }
+        .container {
+            display: flex;
+            background: #000000;
+            width: 100vw;
+            height: 100vh;
+            align-items: center;
+            justify-content: center;
+            align-content: center;
+        }
+        .calculate {
+            max-width: 500px;
+            max-height: 900px;
+        }
+        .calculate_header {
+            padding: 10px 0 0 0;
+            margin: 0 0 36px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .calculate_body {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            align-content: center;
+        }
+        button{
+            margin: 8px;
+        }
+        button:hover {
+            cursor: pointer;
+        }
+        .action_button_top {
+            font-size: 40px;
+            color: #000000;
+            background: #9F9F9F;
+            width: 87px;
+            height: 87px;
+            border-radius: 100%;
+            border: none;
+        }
+        .action_button_left {
+            font-size: 40px;
+            color: #F5F5F5;
+            background: #F69A06;
+            width: 87px;
+            height: 87px;
+            border-radius: 100%;
+            border: none;
+        }
+        .number_button {
+            font-size: 40px;
+            color: #F5F5F5;
+            flex-shrink: 0;
+            background: #313131;
+            width: 87px;
+            height: 87px;
+            border-radius: 100%;
+            border: none;
+        }
+        .zero_button {
+            padding: 30px;
+            display: flex;
+            align-items: center;
+            text-align: left;
+            font-size: 40px;
+            color: #F5F5F5;
+            flex-shrink: 0;
+            border-radius: 45px;
+            border: none;
+            width: 191px;
+            height: 87px;
+            background: #313131;
+        }
+    </style>
+    <script>
+        let char_data = [0,1,2,3,4,5,6,7,8,9,'/','*','-','+']
+        function add_value(new_value) {
+            if (document.getElementById('calculater').value == "syntax error")
+                document.getElementById('calculater').value = ""
+            console.log(new_value);
+            document.getElementById('calculater').value += new_value;
+        }
+
+        function calculate_percent() {
+            try {
+                document.getElementById('calculater').value = eval((input_data + 0) / 100) 
+            }
+            catch (e) {
+                document.getElementById('calculater').value = "syntax error"
+            }
+        }
+
+        const not_work = () => alert("this button dosn't work")
+
+        function calculate() {
+            let input_data = document.getElementById('calculater').value;
+            try {
+                document.getElementById('calculater').value = eval(input_data)
+            }
+            catch (e) {
+                document.getElementById('calculater').value = "syntax error"
+            }
+        }
+    </script>
+</head>
+<body>
+    <div  class="container">
+        <div class="calculate">
+            <div class="calculate_header">
+                <input id="calculater">
+            </div>
+            <div class="calculate_body">
+                <button onclick="not_work()" class="action_button_top">AC</button>
+                <button onclick="not_work()" class="action_button_top">+/-</button>
+                <button onclick="calculate_percent()" class="action_button_top">%</button>
+                <button onclick="add_value('/')" class="action_button_left">/</button>
+                <button onclick="add_value(7)" class="number_button">7</button>
+                <button onclick="add_value(8)" class="number_button">8</button>
+                <button onclick="add_value(9)" class="number_button">9</button>
+                <button onclick="add_value('*')" class="action_button_left">*</button>
+                <button onclick="add_value(4)" class="number_button">4</button>
+                <button onclick="add_value(5)" class="number_button">5</button>
+                <button onclick="add_value(6)" class="number_button">6</button>
+                <button onclick="add_value('-')" class="action_button_left">-</button>
+                <button onclick="add_value(1)" class="number_button">1</button>
+                <button onclick="add_value(2)" class="number_button">2</button>
+                <button onclick="add_value(3)" class="number_button">3</button>
+                <button onclick="add_value('+')" class="action_button_left">+</button>
+                <button onclick="add_value(0)" class="zero_button">0</button>
+                <button onclick="add_value('.')" class="number_button">.</button>
+                <button onclick="calculate()" class="action_button_left">=</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
